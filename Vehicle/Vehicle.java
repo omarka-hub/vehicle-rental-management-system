@@ -17,6 +17,10 @@ public abstract class Vehicle {
         this.isAvailable = true;
     }
 
+    public double getDailyPrice() {
+        return this.dailyPrice;
+    }
+
 
     public abstract double calculateRentalCost(int days);
 
