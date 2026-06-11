@@ -9,10 +9,10 @@ import Vehicle.Vehicle;
 
 public class RentalManager {
 
-    ArrayList<RentalContract> contracts;
+    private ArrayList<RentalContract> contracts;
     private VehicleManager vehicleManager;   
     private CustomerManager customerManager;
-    int nextContractId;
+    private int nextContractId;
 
     public RentalManager(VehicleManager vehicleManager, CustomerManager customerManager) {
         this.contracts = new ArrayList<>();
@@ -122,5 +122,9 @@ public class RentalManager {
                 System.out.println("----------------------");
             }
         }
+    }
+
+    public ArrayList<RentalContract> getAllContracts() {
+        return contracts;
     }
 }

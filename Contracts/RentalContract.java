@@ -90,7 +90,8 @@ public class RentalContract {
     }
 
     public boolean isOverdue() {
-        return delayDays > 0;
+        if (!isActive) return delayDays > 0;
+        return LocalDate.now().isAfter(getExpectedReturnDate());
     }
 
     @Override
