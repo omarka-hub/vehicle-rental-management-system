@@ -1,4 +1,4 @@
-package Vehicel;
+package Vehicle;
 
 public enum FuelType {
     PETROL,
