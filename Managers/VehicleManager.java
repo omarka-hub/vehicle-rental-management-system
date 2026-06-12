@@ -11,9 +11,16 @@ public class VehicleManager {
         this.vehicles = new ArrayList<>();
     }
 
-    public void addVehicle(Vehicle vehicle) {
-        vehicles.add(vehicle);
-        System.out.println("Vehicle added successfully: " + vehicle.getVehicleInfo());
+    public void addVehicle(Vehicle newVehicle) {
+        for (Vehicle vehicle: vehicles) {
+            if (vehicle.getPlateNumber().equalsIgnoreCase(newVehicle.getPlateNumber())) {
+                System.out.println("Error!");
+                System.out.println("A car with the same plate number already exist!");
+                return;
+            }
+        }
+        vehicles.add(newVehicle);
+        System.out.println("Vehicle added successfully: " + newVehicle.getVehicleInfo());
     }
 
     public void removeVehicle(String plateNumber) {

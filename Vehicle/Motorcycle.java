@@ -35,6 +35,14 @@ public class Motorcycle extends Vehicle {
 
     @Override
     public String toString() {
-        return super.toString() + ", Type: Motorcycle, Engine: " + engineCapacity + "cc, Sidecar: " + hasSidecar;
+        return "MotorCycle{" +
+                "plateNumber='" + plateNumber + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", dailyPrice=" + dailyPrice +
+                ", isAvailable=" + isAvailable +
+                ", Type: Motorcycle, Engine: " + engineCapacity + "cc, Sidecar: " + hasSidecar +
+            "}";
     }
-}
+} 
+

@@ -52,4 +52,4 @@ public class Car extends Vehicle {
                 ", plateNumber='" + plateNumber + '\'' +
                 '}';
     }
-}
+} 

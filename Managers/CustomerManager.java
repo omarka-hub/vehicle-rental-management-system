@@ -11,8 +11,15 @@ public class CustomerManager {
         customers = new ArrayList<>();
     }
 
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
+    public void addCustomer(Customer newcustomer) {
+        for (Customer customer: customers) {
+            if (customer.getCustomerId().equalsIgnoreCase(newcustomer.getCustomerId())) {
+                System.out.println("ERROR!");
+                System.out.println("A customer with that ID adress already exist!");
+                return;
+            }
+        }
+        customers.add(newcustomer);
     }
 
     public Customer findCustomer(String customerId) {

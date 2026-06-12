@@ -34,6 +34,7 @@ public class RentalContract {
         setRentalDays(rentalDays);
     }
 
+
     public void setRentalDays(int rentalDays) {
         if (rentalDays <= 0) {
             System.out.println("Rental days cannot be 0 or less! Setting to 1 day instead.");
@@ -52,6 +53,7 @@ public class RentalContract {
         return 0.10 * delayDays * vehicle.getDailyPrice();
     }
 
+
     public double calculateDiscount() {
         return this.baseCost * this.customer.getDiscount();
     }
@@ -59,6 +61,7 @@ public class RentalContract {
     public double calculateFinalCost() {
         return baseCost - calculateDiscount() - earlyReturnCredit + calculatePenalty();
     }
+
 
     public LocalDate getExpectedReturnDate() {
         return startDate.plusDays(rentalDays);
@@ -104,6 +107,7 @@ public class RentalContract {
         if (!isActive) return delayDays > 0;
         return LocalDate.now().isAfter(getExpectedReturnDate());
     }
+    
 
     @Override
     public String toString() {
