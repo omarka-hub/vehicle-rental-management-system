@@ -25,12 +25,23 @@ public class RentalContract {
         this.vehicle = vehicle;
         this.customer = customer;
         this.startDate = startDate;
-        this.rentalDays = rentalDays;
         this.baseCost = vehicle.calculateRentalCost(rentalDays);
         this.isActive = true;
         this.delayDays = 0;
         this.earlyReturnCredit = 0;
         this.actualReturnDate = null;
+
+        setRentalDays(rentalDays);
+    }
+
+    public void setRentalDays(int rentalDays) {
+        if (rentalDays <= 0) {
+            System.out.println("Rental days cannot be 0 or less! Setting to 1 day instead.");
+            this.rentalDays = 1;
+        }
+        else {
+        this.rentalDays = rentalDays;
+        }
     }
 
     public double calculateBaseCost() {
