@@ -38,6 +38,7 @@ public abstract class Vehicle {
     public String getPlateNumber() {
         return plateNumber;
     }
+    
     public boolean isAvailable(){return isAvailable;}
 
 

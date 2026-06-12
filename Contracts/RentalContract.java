@@ -34,7 +34,7 @@ public class RentalContract {
     }
 
     public double calculateBaseCost() {
-        return vehicle.calculateRentalCost(rentalDays);
+        return baseCost;
     }
 
     public double calculatePenalty() {

@@ -27,9 +27,9 @@ public class VehicleManager {
     }
 
     public Vehicle findByPlate(String plateNumber) {
-        for (Vehicle v : vehicles) {
-            if (v.getPlateNumber().equalsIgnoreCase(plateNumber)) {
-                return v;
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber)) {
+                return vehicle;
             }
         }
         return null;
@@ -41,17 +41,17 @@ public class VehicleManager {
             System.out.println("No vehicles in the system.");
             return;
         }
-        for (Vehicle v : vehicles) {
-            System.out.println(v.toString());
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle.toString());
         }
     }
 
     public void displayAvailable() {
         System.out.println("--- Available Vehicles ---");
         boolean found = false;
-        for (Vehicle v : vehicles) {
-            if (v.isAvailable()) {
-                System.out.println(v.toString());
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.isAvailable()) {
+                System.out.println(vehicle.toString());
                 found = true;
             }
         }

@@ -15,7 +15,9 @@ public abstract class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+
     public abstract double getDiscount();
+    
 
     public String getCustomerInfo() {
         return "Customer ID: " + customerId +

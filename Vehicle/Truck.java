@@ -2,7 +2,7 @@ package Vehicle;
 
 public class Truck extends Vehicle {
 
-    private double loadCapacity; // بالطن
+    private double loadCapacity; 
     private boolean isRefrigerated;
 
 
