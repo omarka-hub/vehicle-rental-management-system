@@ -19,6 +19,10 @@ public class VehicleManager {
     public void removeVehicle(String plateNumber) {
         Vehicle target = findByPlate(plateNumber);
         if (target != null) {
+            if (target.isAvailable() == false) {
+                System.out.println("Cannot remove: vehicle is currently rented!");
+                return;
+            }
             vehicles.remove(target);
             System.out.println("Vehicle with plate " + plateNumber + " has been removed.");
         } else {
