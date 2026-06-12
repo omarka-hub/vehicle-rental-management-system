@@ -114,6 +114,7 @@ public class RentalManager {
             }
         }
     }
+    
 
     public void displayCustomersForVehicle(String plate) {
         for (RentalContract contract : contracts) {

@@ -22,70 +22,7 @@ public class ReportManager {
 		this.rentalManager = rentalManager;
 	}
 
-	public void showMenu(Scanner scanner) {
-		boolean back = false;
-		while (!back) {
-			System.out.println();
-			System.out.println("========== REPORT MENU ==========");
-			System.out.println("1. Dashboard summary");
-			System.out.println("2. Vehicles report");
-			System.out.println("3. Customers report");
-			System.out.println("4. Contracts report");
-			System.out.println("5. Available vehicles report");
-			System.out.println("6. Active rentals report");
-			System.out.println("7. Overdue rentals report");
-			System.out.println("8. Contracts by customer name");
-			System.out.println("9. Company contracts report");
-			System.out.println("10. Rentals in date range");
-			System.out.println("11. Customers for a vehicle");
-			System.out.println("0. Back");
-
-			int choice = readInt(scanner, "Choose an option: ");
-
-			switch (choice) {
-				case 1:
-					printDashboard();
-					break;
-				case 2:
-					printVehiclesReport();
-					break;
-				case 3:
-					printCustomersReport();
-					break;
-				case 4:
-					printContractsReport();
-					break;
-				case 5:
-					printAvailableVehiclesReport();
-					break;
-				case 6:
-					printActiveContractsReport();
-					break;
-				case 7:
-					printOverdueContractsReport();
-					break;
-				case 8:
-					printContractsByCustomerName(readNonEmpty(scanner, "Customer name: "));
-					break;
-				case 9:
-					printCompanyContracts();
-					break;
-				case 10:
-					printRentalsInPeriod(
-							readDate(scanner, "From date (yyyy-MM-dd): "),
-							readDate(scanner, "To date (yyyy-MM-dd): "));
-					break;
-				case 11:
-					printCustomersForVehicle(readNonEmpty(scanner, "Vehicle plate number: "));
-					break;
-				case 0:
-					back = true;
-					break;
-				default:
-					System.out.println("Invalid choice.");
-			}
-		}
-	}
+	
 
 	public void printDashboard() {
 		int totalVehicles = vehicleManager.getAllVehicles().size();
@@ -159,6 +96,7 @@ public class ReportManager {
 		}
 	}
 
+
 	public void printContractsReport() {
 		System.out.println();
 		System.out.println("========== CONTRACTS REPORT ==========");
@@ -188,6 +126,7 @@ public class ReportManager {
 			System.out.println("No available vehicles at the moment.");
 		}
 	}
+	
 
 	public void printActiveContractsReport() {
 		System.out.println();
@@ -259,7 +198,7 @@ public class ReportManager {
 		boolean found = false;
 		for (RentalContract contract : rentalManager.getAllContracts()) {
 			LocalDate startDate = contract.getStartDate();
-			if (!startDate.isBefore(from) && !startDate.isAfter(to)) {
+			if (startDate.isBefore(from) == false && startDate.isAfter(to) == false) {
 				System.out.println(contract);
 				System.out.println("----------------------");
 				found = true;
@@ -290,7 +229,7 @@ public class ReportManager {
 		while (true) {
 			System.out.print(prompt);
 			String value = scanner.nextLine().trim();
-			if (!value.isEmpty()) {
+			if (value.isEmpty() == false) {
 				return value;
 			}
 			System.out.println("Value cannot be empty.");
@@ -317,6 +256,73 @@ public class ReportManager {
 				return LocalDate.parse(value);
 			} catch (Exception ex) {
 				System.out.println("Please use the yyyy-MM-dd format.");
+			}
+		}
+	}
+
+
+
+	public void showMenu(Scanner scanner) {
+		boolean back = false;
+		while (!back) {
+			System.out.println();
+			System.out.println("========== REPORT MENU ==========");
+			System.out.println("1. Dashboard summary");
+			System.out.println("2. Vehicles report");
+			System.out.println("3. Customers report");
+			System.out.println("4. Contracts report");
+			System.out.println("5. Available vehicles report");
+			System.out.println("6. Active rentals report");
+			System.out.println("7. Overdue rentals report");
+			System.out.println("8. Contracts by customer name");
+			System.out.println("9. Company contracts report");
+			System.out.println("10. Rentals in date range");
+			System.out.println("11. Customers for a vehicle");
+			System.out.println("0. Back");
+
+			int choice = readInt(scanner, "Choose an option: ");
+
+			switch (choice) {
+				case 1:
+					printDashboard();
+					break;
+				case 2:
+					printVehiclesReport();
+					break;
+				case 3:
+					printCustomersReport();
+					break;
+				case 4:
+					printContractsReport();
+					break;
+				case 5:
+					printAvailableVehiclesReport();
+					break;
+				case 6:
+					printActiveContractsReport();
+					break;
+				case 7:
+					printOverdueContractsReport();
+					break;
+				case 8:
+					printContractsByCustomerName(readNonEmpty(scanner, "Customer name: "));
+					break;
+				case 9:
+					printCompanyContracts();
+					break;
+				case 10:
+					printRentalsInPeriod(
+							readDate(scanner, "From date (yyyy-MM-dd): "),
+							readDate(scanner, "To date (yyyy-MM-dd): "));
+					break;
+				case 11:
+					printCustomersForVehicle(readNonEmpty(scanner, "Vehicle plate number: "));
+					break;
+				case 0:
+					back = true;
+					break;
+				default:
+					System.out.println("Invalid choice.");
 			}
 		}
 	}

@@ -89,6 +89,7 @@ public class Main {
         rentalManager.rentVehicle("CAR-001", "CUST-001", LocalDate.now().minusDays(2), 7);
     }
 
+
     private static void handleVehicleMenu(Scanner scanner, VehicleManager vehicleManager) {
         boolean back = false;
         while (!back) {
@@ -165,6 +166,8 @@ public class Main {
         }
     }
 
+
+
     private static void handleCustomerMenu(Scanner scanner, CustomerManager customerManager) {
         boolean back = false;
         while (!back) {
@@ -177,6 +180,7 @@ public class Main {
             System.out.println("5. Find customer by name");
             System.out.println("6. Update customer");
             System.out.println("0. Back");
+
 
             int choice = readInt(scanner, "Choose an option: ");
 
@@ -331,6 +335,7 @@ public class Main {
         }
     }
 
+    
     private static int readInt(Scanner scanner, String prompt) {
         while (true) {
             System.out.print(prompt);
