@@ -4,11 +4,11 @@ public class Car extends Vehicle {
 
     private FuelType fuelType;
     private boolean hasAC;
-    private int numSeats;
+    private int numSeats; 
 
 
     public Car(String plateNumber, String brand, String model, double dailyPrice, FuelType fuelType, boolean hasAC, int numSeats) {
-        super(plateNumber, brand, model, dailyPrice); // استدعاء باني الكلاس الأب
+        super(plateNumber, brand, model, dailyPrice); 
         this.fuelType = fuelType;
         this.hasAC = hasAC;
         this.numSeats = numSeats;

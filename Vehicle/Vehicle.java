@@ -18,7 +18,7 @@ public abstract class Vehicle {
     }
 
     public double getDailyPrice() {
-        return this.dailyPrice;
+        return this.dailyPrice; 
     }
 
 
