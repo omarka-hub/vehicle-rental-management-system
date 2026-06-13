@@ -26,15 +26,23 @@ public class RentalManager {
         Customer customer = customerManager.findCustomer(custId);
 
         if (vehicle == null) {
+            System.out.println("  ");
             System.out.println("Vehicle not found!");
             return;
         }
         if (vehicle.isAvailable() == false) {
+            System.out.println("  ");
             System.out.println("Vehicle is not available!");
             return;
         }
         if (customer == null) {
+            System.out.println("  ");
             System.out.println("Customer not found!");
+            return;
+        }
+        if (days <= 0) {
+            System.out.println("  ");
+            System.out.println("Rental days cannot be 0 or less!");
             return;
         }
 

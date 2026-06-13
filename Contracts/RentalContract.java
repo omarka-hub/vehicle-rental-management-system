@@ -21,8 +21,7 @@ public class RentalContract {
     private boolean isActive;
 
     public RentalContract(String contractId, Vehicle vehicle, Customer customer, LocalDate startDate, int rentalDays) {
-        setRentalDays(rentalDays);
-
+        this.rentalDays = rentalDays;
         this.contractId = contractId;
         this.vehicle = vehicle;
         this.customer = customer;
@@ -37,15 +36,6 @@ public class RentalContract {
     }
 
 
-    public void setRentalDays(int rentalDays) {
-        if (rentalDays <= 0) {
-            System.out.println("Rental days cannot be 0 or less! Setting to 1 day instead.");
-            this.rentalDays = 1;
-        }
-        else {
-        this.rentalDays = rentalDays;
-        }
-    }
 
     public double calculateBaseCost() {
         return baseCost;
