@@ -193,7 +193,6 @@ public class Main {
                             readNonEmpty(scanner, "Phone number: "),
                             readNonEmpty(scanner, "License number: "),
                             readDate(scanner, "Date of birth (yyyy-MM-dd): ")));
-                    System.out.println("Customer added successfully.");
                     break;
                 case 2:
                     customerManager.addCustomer(new Company(
@@ -203,7 +202,6 @@ public class Main {
                             readNonEmpty(scanner, "Phone number: "),
                             readNonEmpty(scanner, "Commercial register: "),
                             readDouble(scanner, "Discount rate (0.0 to 0.30): ")));
-                    System.out.println("Customer added successfully.");
                     break;
                 case 3:
                     if (customerManager.getAllCustomers().isEmpty()) {

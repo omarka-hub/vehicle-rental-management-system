@@ -19,7 +19,8 @@ public class CustomerManager {
                 return;
             }
         }
-        customers.add(newcustomer);
+        customers.add(newcustomer); 
+        System.out.println("Customer added successfully.");
     }
 
     public Customer findCustomer(String customerId) {
