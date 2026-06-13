@@ -26,7 +26,17 @@ public abstract class Vehicle {
 
 
     public String getVehicleInfo() {
-        return brand + " " + model + " ( " + plateNumber + " ) ";
+        return "Plate Number: " + plateNumber +
+                "\nBrand: " + brand +
+                "\nModel: " + model +
+                "\nDaily Price: " + dailyPrice +
+                "\nIs Available: " + isAvailable;
+
+
+    }
+
+    public String getVehicleBasicInfo() {
+        return " " + brand + " " + model + " (" + plateNumber + ")";
     }
 
 
@@ -45,12 +55,6 @@ public abstract class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "plateNumber='" + plateNumber + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", dailyPrice=" + dailyPrice +
-                ", isAvailable=" + isAvailable +
-                '}';
+      return getVehicleInfo();
     }
 }

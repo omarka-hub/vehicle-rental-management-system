@@ -14,13 +14,15 @@ public class VehicleManager {
     public void addVehicle(Vehicle newVehicle) {
         for (Vehicle vehicle: vehicles) {
             if (vehicle.getPlateNumber().equalsIgnoreCase(newVehicle.getPlateNumber())) {
+                System.out.println("  ");
                 System.out.println("Error!");
-                System.out.println("A car with the same plate number already exist!");
+                System.out.println("A vehicle with the same plate number already exist!");
                 return;
             }
         }
         vehicles.add(newVehicle);
-        System.out.println("Vehicle added successfully: " + newVehicle.getVehicleInfo());
+        System.out.println("  ");
+        System.out.println("Vehicle added successfully: " + newVehicle.getVehicleBasicInfo());
     }
 
     public void removeVehicle(String plateNumber) {
@@ -47,13 +49,15 @@ public class VehicleManager {
     }
 
     public void displayAll() {
-        System.out.println("--- All Vehicles ---");
         if (vehicles.isEmpty()) {
             System.out.println("No vehicles in the system.");
             return;
         }
+        System.out.println("--- All Vehicles ---");
         for (Vehicle vehicle : vehicles) {
-            System.out.println(vehicle.toString());
+            System.out.println("  ");
+            System.out.println(vehicle);
+            System.out.println("----------------------");
         }
     }
 
@@ -62,6 +66,7 @@ public class VehicleManager {
         boolean found = false;
         for (Vehicle vehicle : vehicles) {
             if (vehicle.isAvailable()) {
+                System.out.println("  ");
                 System.out.println(vehicle.toString());
                 found = true;
             }

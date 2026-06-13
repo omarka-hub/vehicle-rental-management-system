@@ -136,23 +136,24 @@ public class Main {
                             readBoolean(scanner, "Is refrigerated (yes/no): ")));
                     break;
                 case 4:
-                    if (vehicleManager.getAllVehicles().isEmpty()) {
-                        System.out.println("No vehicles found.");
-                    } else {
-                        vehicleManager.displayAll();
-                    }
+                    System.out.println("  ");
+                    vehicleManager.displayAll();
                     break;
                 case 5:
+                    System.out.println("  ");
                     vehicleManager.displayAvailable();
                     break;
                 case 6:
+                    System.out.println("  ");
                     vehicleManager.removeVehicle(readNonEmpty(scanner, "Plate number to remove: "));
                     break;
                 case 7: {
                     String plateNumber = readNonEmpty(scanner, "Plate number: ");
                     if (vehicleManager.findByPlate(plateNumber) == null) {
+                        System.out.println("  ");
                         System.out.println("Vehicle not found!");
                     } else {
+                        System.out.println("  ");
                         System.out.println(vehicleManager.findByPlate(plateNumber));
                     }
                     break;
@@ -204,17 +205,15 @@ public class Main {
                             readDouble(scanner, "Discount rate (0.0 to 0.30): ")));
                     break;
                 case 3:
-                    if (customerManager.getAllCustomers().isEmpty()) {
-                        System.out.println("No customers found.");
-                    } else {
-                        customerManager.displayAll();
-                    }
+                    customerManager.displayAll();
                     break;
                 case 4: {
                     Customer customer = customerManager.findCustomer(readNonEmpty(scanner, "Customer ID: "));
                     if (customer == null) {
+                        System.out.println("  ");
                         System.out.println("Customer not found!");
                     } else {
+                        System.out.println("  ");
                         System.out.println(customer);
                     }
                     break;
@@ -222,8 +221,10 @@ public class Main {
                 case 5: {
                     Customer customer = customerManager.findByName(readNonEmpty(scanner, "Customer name: "));
                     if (customer == null) {
+                        System.out.println("  ");
                         System.out.println("Customer not found!");
                     } else {
+                        System.out.println("  ");
                         System.out.println(customer);
                     }
                     break;

@@ -44,16 +44,10 @@ public class Truck extends Vehicle {
 
     @Override
     public String toString() {
-        return "Truck{" +
-                "plateNumber='" + plateNumber + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", dailyPrice=" + dailyPrice +
-                ", isAvailable=" + isAvailable + 
-                " -> Truck{" +
-                "loadCapacity=" + loadCapacity +
-                ", isRefrigerated=" + isRefrigerated +
-                '}';
+      return super.toString() +
+        "\nLoad Capacity: " + loadCapacity +
+        "\nIs Refrigerated: " + isRefrigerated;
+
     }
 }
 

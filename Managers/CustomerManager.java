@@ -14,14 +14,17 @@ public class CustomerManager {
     public void addCustomer(Customer newcustomer) {
         for (Customer customer: customers) {
             if (customer.getCustomerId().equalsIgnoreCase(newcustomer.getCustomerId())) {
+                System.out.println("  ");
                 System.out.println("ERROR!");
                 System.out.println("A customer with that ID adress already exist!");
                 return;
             }
         }
         customers.add(newcustomer); 
+        System.out.println("  ");
         System.out.println("Customer added successfully.");
     }
+ 
 
     public Customer findCustomer(String customerId) {
 
@@ -46,11 +49,13 @@ public class CustomerManager {
     public void displayAll() {
 
         if (customers.isEmpty()) {
+            System.out.println("  ");
             System.out.println("No customers found.");
             return;
         }
 
         for (Customer customer : customers) {
+            System.out.println("  ");
             System.out.println(customer);
             System.out.println("----------------------");
         }
@@ -63,6 +68,7 @@ public class CustomerManager {
         Customer customer = findCustomer(id);
 
         if (customer == null) {
+            System.out.println("  ");
             System.out.println("Customer not found!");
             return;
         }
@@ -82,6 +88,7 @@ public class CustomerManager {
                 break;
 
             default:
+                System.out.println("  ");
                 System.out.println("Invalid field!");
         }
     }
