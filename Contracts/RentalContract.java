@@ -21,6 +21,8 @@ public class RentalContract {
     private boolean isActive;
 
     public RentalContract(String contractId, Vehicle vehicle, Customer customer, LocalDate startDate, int rentalDays) {
+        setRentalDays(rentalDays);
+
         this.contractId = contractId;
         this.vehicle = vehicle;
         this.customer = customer;
@@ -31,7 +33,7 @@ public class RentalContract {
         this.earlyReturnCredit = 0;
         this.actualReturnDate = null;
 
-        setRentalDays(rentalDays);
+        
     }
 
 

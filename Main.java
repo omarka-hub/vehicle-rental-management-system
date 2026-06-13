@@ -9,6 +9,7 @@ import Vehicle.Car;
 import Vehicle.FuelType;
 import Vehicle.Motorcycle;
 import Vehicle.Truck;
+import Vehicle.Vehicle;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
