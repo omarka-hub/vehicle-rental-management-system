@@ -64,31 +64,7 @@ public class Main {
         scanner.close();
     }
 
-    //private static void seedDemoData(VehicleManager vehicleManager,
-                                   //  CustomerManager customerManager,
-                                    // RentalManager rentalManager) {
-        //vehicleManager.addVehicle(new Car("CAR-001", "Toyota", "Camry", 50.0, FuelType.PETROL, true, 5));
-       // vehicleManager.addVehicle(new Motorcycle("MOTO-101", "Yamaha", "MT-07", 35.0, 689.0, false));
-       // vehicleManager.addVehicle(new Truck("TRK-201", "Volvo", "FH", 120.0, 12.0, true));
 
-        //customerManager.addCustomer(new Individual(
-               // "CUST-001",
-               // "Ahmed Ali",
-               // "Riyadh",
-               // "0500000001",
-               // "D1234567",
-             //   LocalDate.of(1998, 4, 12)));
-
-       // customerManager.addCustomer(new Company(
-                //"CUST-002",
-              //  "Alpha Logistics",
-             //   "Jeddah",
-              //  "0500000002",
-             //   "CR-88991",
-            //    0.15));
-
-      //  rentalManager.rentVehicle("CAR-001", "CUST-001", LocalDate.now().minusDays(2), 7);
-    //}
 
 
     private static void handleVehicleMenu(Scanner scanner, VehicleManager vehicleManager) {
@@ -397,5 +373,31 @@ public class Main {
                 System.out.println("Invalid fuel type.");
             }
         }
+    }
+
+    private static void seedDemoData(VehicleManager vehicleManager,
+                                     CustomerManager customerManager,
+                                     RentalManager rentalManager) {
+        vehicleManager.addVehicle(new Car("CAR-001", "Toyota", "Camry", 50.0, FuelType.PETROL, true, 5));
+        vehicleManager.addVehicle(new Motorcycle("MOTO-101", "Yamaha", "MT-07", 35.0, 689.0, false));
+        vehicleManager.addVehicle(new Truck("TRK-201", "Volvo", "FH", 120.0, 12.0, true));
+
+        customerManager.addCustomer(new Individual(
+                "CUST-001",
+                "Ahmed Ali",
+                "Riyadh",
+                "0500000001",
+                "D1234567",
+                LocalDate.of(1998, 4, 12)));
+
+        customerManager.addCustomer(new Company(
+                "CUST-002",
+                "Alpha Logistics",
+                "Jeddah",
+                "0500000002",
+                "CR-88991",
+                0.15));
+
+        rentalManager.rentVehicle("CAR-001", "CUST-001", LocalDate.now().minusDays(2), 7);
     }
 }
