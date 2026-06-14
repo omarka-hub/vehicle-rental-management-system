@@ -12,6 +12,13 @@ public class VehicleManager {
     }
 
     public void addVehicle(Vehicle newVehicle) {
+
+        if (newVehicle.getDailyPrice() <= 0) {
+            System.out.println("   ");
+            System.out.println("Vehicle daily price cannot be 0 or less!");
+            return;
+        }
+
         for (Vehicle vehicle: vehicles) {
             if (vehicle.getPlateNumber().equalsIgnoreCase(newVehicle.getPlateNumber())) {
                 System.out.println("  ");
