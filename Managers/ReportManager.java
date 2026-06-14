@@ -6,6 +6,11 @@ import Customer.Customer;
 import Vehicle.Vehicle;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ReportManager {
@@ -108,6 +113,102 @@ public class ReportManager {
 		for (RentalContract contract : rentalManager.getAllContracts()) {
 			System.out.println(contract);
 			System.out.println("----------------------");
+		}
+	}
+
+	public void printRevenueReport() {
+		System.out.println();
+		System.out.println("========== COMPANY REVENUE ==========");
+		if (rentalManager.getAllContracts().isEmpty()) {
+			System.out.println("No contracts found.");
+			return;
+		}
+
+		double completedRevenue = 0;
+		double expectedRevenue = 0;
+		int completedContracts = 0;
+		int activeContracts = 0;
+
+		for (RentalContract contract : rentalManager.getAllContracts()) {
+			double finalCost = contract.calculateFinalCost();
+			if (contract.isActive()) {
+				activeContracts++;
+				expectedRevenue += finalCost;
+			} else {
+				completedContracts++;
+				completedRevenue += finalCost;
+			}
+		}
+
+		System.out.println("Completed contracts: " + completedContracts);
+		System.out.println("Active contracts:    " + activeContracts);
+		System.out.println("Completed revenue:   $" + String.format("%.2f", completedRevenue));
+		System.out.println("Expected active revenue: $" + String.format("%.2f", expectedRevenue));
+		System.out.println("Total projected revenue: $" + String.format("%.2f", completedRevenue + expectedRevenue));
+	}
+
+	public void printMostRentedVehiclesReport() {
+		System.out.println();
+		System.out.println("========== MOST RENTED VEHICLES ==========");
+		if (rentalManager.getAllContracts().isEmpty()) {
+			System.out.println("No contracts found.");
+			return;
+		}
+
+		Map<String, Integer> rentalCounts = new HashMap<>();
+		Map<String, Vehicle> vehicleByPlate = new HashMap<>();
+
+		for (RentalContract contract : rentalManager.getAllContracts()) {
+			String plate = contract.getVehicle().getPlateNumber();
+			rentalCounts.put(plate, rentalCounts.getOrDefault(plate, 0) + 1);
+			vehicleByPlate.putIfAbsent(plate, contract.getVehicle());
+		}
+
+		List<Map.Entry<String, Integer>> sortedVehicles = new ArrayList<>(rentalCounts.entrySet());
+		sortedVehicles.sort(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder()));
+
+		for (Map.Entry<String, Integer> entry : sortedVehicles) {
+			Vehicle vehicle = vehicleByPlate.get(entry.getKey());
+			System.out.println(vehicle.getVehicleBasicInfo() + " -> Rentals: " + entry.getValue());
+		}
+	}
+
+	public void printVipCustomersReport() {
+		System.out.println();
+		System.out.println("========== VIP CUSTOMERS ==========");
+		if (rentalManager.getAllContracts().isEmpty()) {
+			System.out.println("No contracts found.");
+			return;
+		}
+
+		Map<String, Integer> completedContractsByCustomer = new HashMap<>();
+		Map<String, Customer> customerById = new HashMap<>();
+
+		for (RentalContract contract : rentalManager.getAllContracts()) {
+			String customerId = contract.getCustomer().getCustomerId();
+			customerById.putIfAbsent(customerId, contract.getCustomer());
+			if (!contract.isActive()) {
+				completedContractsByCustomer.put(customerId, completedContractsByCustomer.getOrDefault(customerId, 0) + 1);
+			}
+		}
+
+		List<Map.Entry<String, Integer>> vipCustomers = new ArrayList<>();
+		for (Map.Entry<String, Integer> entry : completedContractsByCustomer.entrySet()) {
+			if (entry.getValue() >= 5) {
+				vipCustomers.add(entry);
+			}
+		}
+
+		vipCustomers.sort(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder()));
+
+		if (vipCustomers.isEmpty()) {
+			System.out.println("No VIP customers found with at least 5 completed contracts.");
+			return;
+		}
+
+		for (Map.Entry<String, Integer> entry : vipCustomers) {
+			Customer customer = customerById.get(entry.getKey());
+			System.out.println(customer.getName() + " (" + customer.getCustomerId() + ") -> Completed contracts: " + entry.getValue());
 		}
 	}
 
@@ -271,13 +372,16 @@ public class ReportManager {
 			System.out.println("2. Vehicles report");
 			System.out.println("3. Customers report");
 			System.out.println("4. Contracts report");
-			System.out.println("5. Available vehicles report");
-			System.out.println("6. Active rentals report");
-			System.out.println("7. Overdue rentals report");
-			System.out.println("8. Contracts by customer name");
-			System.out.println("9. Company contracts report");
-			System.out.println("10. Rentals in date range");
-			System.out.println("11. Customers for a vehicle");
+			System.out.println("5. Company revenue report");
+			System.out.println("6. Most rented vehicles report");
+			System.out.println("7. VIP customers report");
+			System.out.println("8. Available vehicles report");
+			System.out.println("9. Active rentals report");
+			System.out.println("10. Overdue rentals report");
+			System.out.println("11. Contracts by customer name");
+			System.out.println("12. Company contracts report");
+			System.out.println("13. Rentals in date range");
+			System.out.println("14. Customers for a vehicle");
 			System.out.println("0. Back");
 
 			int choice = readInt(scanner, "Choose an option: ");
@@ -296,26 +400,35 @@ public class ReportManager {
 					printContractsReport();
 					break;
 				case 5:
-					printAvailableVehiclesReport();
+					printRevenueReport();
 					break;
 				case 6:
-					printActiveContractsReport();
+					printMostRentedVehiclesReport();
 					break;
 				case 7:
-					printOverdueContractsReport();
+					printVipCustomersReport();
 					break;
 				case 8:
-					printContractsByCustomerName(readNonEmpty(scanner, "Customer name: "));
+					printAvailableVehiclesReport();
 					break;
 				case 9:
-					printCompanyContracts();
+					printActiveContractsReport();
 					break;
 				case 10:
+					printOverdueContractsReport();
+					break;
+				case 11:
+					printContractsByCustomerName(readNonEmpty(scanner, "Customer name: "));
+					break;
+				case 12:
+					printCompanyContracts();
+					break;
+				case 13:
 					printRentalsInPeriod(
 							readDate(scanner, "From date (yyyy-MM-dd): "),
 							readDate(scanner, "To date (yyyy-MM-dd): "));
 					break;
-				case 11:
+				case 14:
 					printCustomersForVehicle(readNonEmpty(scanner, "Vehicle plate number: "));
 					break;
 				case 0:
