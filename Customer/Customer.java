@@ -23,7 +23,7 @@ public abstract class Customer {
         return "Customer ID: " + customerId +
                 "\nName: " + name +
                 "\nAddress: " + address +
-                "\nPhone: " + phoneNumber; 
+                "\nPhone: " + phoneNumber;
     }
 
     public String getCustomerId() {
